@@ -18,13 +18,14 @@
 		</header>
 		<main>
 			<section
-				id="boxeadores"
+				id="boxers"
 				class={`flex justify-between relative
 				[&>div>img]:absolute [&>div>img]:bottom-0
 				[&>div>img]: w-auto
 			 	[&>div>img]:animate-once [&>div>img]:animate-duration-1000 [&>div>img]:animate-ease-in-out
 				h-[40vh] lg:h-screen pt-24 border-b border-white/10
-				`}>
+				`}
+				>
 				<div 
 					class="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#131824] via-zinc-900 to-zinc-950 h-full w-full inset-0 absolute"
 				>
@@ -46,6 +47,32 @@
 					<img class="right-[35%]  h-[68%] z-10  animate-delay-[1300ms] animate-fade-left" src="/Rivers2.png" alt="Rivers2">
 					<img class="right-[40%]  h-[65%] z-0 animate-delay-[1600ms] animate-fade-left" src="/Ampeter.png" alt="Ampeter">
 				</div>
+
+				<div id="info" class="absolute bottom-16 z-50 mx-auto left-1/2 -translate-x-1/2">
+					<div class="flex flex-col">   
+						<div class="px-5 pt-4 pb-2 bg-white text-black text-center animate-fade-down animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
+							<h2 class="font-boxing text-5xl  ">1 de JULIO</h2>
+						</div>
+						<div class="px-5 pt-4 pb-2 bg-black rounded-md text-white text-center animate-fade-up animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
+							<a class="font-boxing text-3xl hover:contrast-150 hover:scale-105 transition inline-block" href="#">Comprar entradas</a>
+						</div>
+					</div>
+				</div>
+
+				<div id="combat" class="absolute bottom-16 z-50 mx-auto left-1/2 -translate-x-1/2 flex flex-col gap-y-24 opacity-0 ">
+					<div class="px-5 pt-4 pb-2 bg-black text-white text-center">
+						<h3 class="font-boxing-striped text-6xl">Mayichi</h3>
+					</div>
+
+					<span class="left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 font-boxing text-yellow-500 text-6xl block absolute [text-shadow: 2px_2px_0px_red]">
+						VS.
+					</span>
+
+					<div class="px-5 pt-4 pb-2 bg-white text-black text-center">
+						<h3 class="font-boxing-striped text-6xl">Amouranth</h3>
+					</div>
+				</div>
+
 			</section>
 		</main>
 		<footer></footer>
@@ -71,3 +98,57 @@
 	}
 </style>
 <!-- h-[40vh] responsive ocupa algo menos de mitad de la pantalla -->
+<script>
+	const $boxers = document.querySelector('#boxers')
+	const $boxersImages = $boxers.querySelectorAll('img')
+
+	const $info = document.querySelector('#info')
+	const $combat = document.querySelector('#combat')
+
+
+	$boxersImages.forEach($img => {
+
+
+		$img.addEventListener("mouseleave", ()=>{
+			$boxersImages.forEach(($img) =>{
+				$img.setAttribute ('style', "transition: all .3s ease-in-out")
+			})
+		})
+
+		$img.addEventListener('mouseenter', () => {
+			//recuperamos las imagenes de donde estoy
+			const sectionImages = $img.parentNode.children
+			const position = Array.from(sectionImages).indexOf($img)
+			//recuperamos imagenes del lado izquierdo y del lado derecho
+			const [leftBoxer, rightBoxer] = [
+				$boxersImages[position], //de la izquierda
+				$boxersImages[position + $boxersImages.length /2] //el de la derecha
+			]
+
+			//ocultamos la informacion
+			$info.setAttribute('style','opacity: 0; transition: all .3s ease-in-out')
+			$combat.setAttribute('style', 'opacity:1; transition: all .3s ease-in-out')
+			const [firstBoxerName, secondBoxerName] = $combat.querySelectorAll('h3')
+			firstBoxerName.innerText = leftBoxer.alt
+			secondBoxerName.innerText = rightBoxer.alt
+
+			// console.log(leftBoxer,rightBoxer)
+			//ocultar los boxeadores que no interesan
+			$boxersImages.forEach(($img) =>{
+				$img.setAttribute(
+					"style",
+					"filter: blur(2px) grayscale(.8); transition: all 1s ease-in-out"
+				)
+			})
+
+			leftBoxer.setAttribute(
+				'style',
+				"scale: 1.1; contrast: 1.1; transition: all .3s ease-in-out"
+			)
+			rightBoxer.setAttribute(
+				'style',
+				"scale: 1.1; contrast: 1.1; transition: all .3s ease-in-out"
+			)
+		})  
+	})
+</script>

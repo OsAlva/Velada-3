@@ -9,21 +9,22 @@
 		
 		<title>La velada</title>
 	</head>
-	<body>
+	<body class="relative">
+		
 		<header class="relative">
-			<div class="w-32 lg:w-64 top-12 h-auto absolute left-1/2 -translate-x-1/2 z-10 flex flex-col gap-1 justify-center items-center">
-				<img class="animate-rotate-y animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-normal " src="Logo.png" alt="Logo"/>
-				<h1 class="font-boxing text-4xl  text-center text-white font-bold"><span class="bg-clip-text text-transparent bg-gradient-to-b from-indigo-200 via-slate-600 to-indigo-200 inline-block leading-relaxed">La velada del año </span><span class="text-sky-500">III</span></h1>
+			<div class="md:absolute md:left-1/2 md:-translate-x-1/2 flex flex-col gap-1 justify-center items-center mt-4 md:mt-0 md:top-8 z-10">
+				<img class="w-32 lg:w-80 h-auto animate-rotate-y animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-normal " src="Logo.png" alt="Logo"/>
+				<h1 class="font-boxing text-4xl  text-center text-white font-bold"><span class="bg-clip-text text-transparent bg-gradient-to-b from-indigo-200 via-slate-600 to-indigo-200 inline-block leading-relaxed">La velada del año </span><span class="text-sky-500"> III</span></h1>
 			</div>
 		</header>
-		<main>
+		<main class="relative">
 			<section
 				id="boxers"
 				class={`flex justify-between relative
 				[&>div>img]:absolute [&>div>img]:bottom-0
 				[&>div>img]: w-auto
 			 	[&>div>img]:animate-once [&>div>img]:animate-duration-1000 [&>div>img]:animate-ease-in-out
-				h-[40vh] lg:h-screen pt-24 border-b border-white/10
+				h-[40vh] md:h-[65vh] lg:h-screen pt-4 lg:pt-24 border-b border-white/10
 				`}
 				>
 				<div 
@@ -48,18 +49,15 @@
 					<img class="right-[40%]  h-[65%] z-0 animate-delay-[1600ms] animate-fade-left" src="/Ampeter.png" alt="Ampeter">
 				</div>
 
-				<div id="info" class="absolute bottom-16 z-50 mx-auto left-1/2 -translate-x-1/2">
-					<div class="flex flex-col">   
-						<div class="px-5 pt-4 pb-2 bg-white text-black text-center animate-fade-down animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
-							<h2 class="font-boxing text-5xl  ">1 de JULIO</h2>
-						</div>
-						<div class="px-5 pt-4 pb-2 bg-black rounded-md text-white text-center animate-fade-up animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
-							<a class="font-boxing text-3xl hover:contrast-150 hover:scale-105 transition inline-block" href="#">Comprar entradas</a>
-						</div>
-					</div>
+				<div class="absolute inset-0 flex gap-x-2 left-1/2 -translate-x-1/2 justify-center opacity-90">
+					<div class="w-2 blur-sm h-full bg-gradient-to-t from-indigo-100 via-slate-600 to-indigo-200 "></div>
+					<div class="w-2 blur-sm h-full bg-gradient-to-t from-indigo-100 via-slate-600 to-indigo-200 "></div>
+					<div class="w-2 blur-sm h-full bg-gradient-to-t from-indigo-100 via-slate-600 to-indigo-200 "></div>
 				</div>
 
-				<div id="combat" class="absolute bottom-16 z-50 mx-auto left-1/2 -translate-x-1/2 flex flex-col gap-y-24 opacity-0 ">
+			
+
+				<div id="combat" class="absolute bottom-5 z-50 mx-auto left-1/2 -translate-x-1/2 flex flex-col gap-y-24 opacity-0 ">
 					<div class="px-5 pt-4 pb-2 bg-black text-white text-center">
 						<h3 class="font-boxing-striped text-6xl">Mayichi</h3>
 					</div>
@@ -74,6 +72,16 @@
 				</div>
 
 			</section>
+			<div id="info" class="block lg:absolute lg:bottom-16 z-50 mx-auto lg:left-1/2 lg:-translate-x-1/2">
+				<div class="flex flex-col">   
+					<div class="px-5 pt-4 pb-2 bg-white text-black text-center animate-fade-down animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
+						<h2 class="font-boxing text-5xl  ">1 de JULIO</h2>
+					</div>
+					<div class="px-5 pt-4 pb-2 bg-black rounded-md text-white text-center animate-fade-up animate-once animate-duration-1000 animate-delay-0 animate-ease-in-out animate-alternate">
+						<a class="font-boxing text-3xl hover:contrast-150 hover:scale-105 transition inline-block" href="#">Comprar entradas</a>
+					</div>
+				</div>
+			</div>
 		</main>
 		<footer></footer>
 	</body>
@@ -113,6 +121,9 @@
 			$boxersImages.forEach(($img) =>{
 				$img.setAttribute ('style', "transition: all .3s ease-in-out")
 			})
+
+			$info.setAttribute('style', "opacity: 1; transition: all .3s ease-in-out")
+			$combat.setAttribute('style', "opacity: 0; transition: all .3s ease-in-out; visibility; hidden")
 		})
 
 		$img.addEventListener('mouseenter', () => {
